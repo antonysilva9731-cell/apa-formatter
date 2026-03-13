@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Formateador de Normas APA 7edición Gratis | Aplica formato APA automáticamente en Word</title>
+
+<meta name="description" content="Convierte tu documento Word a normas APA 7 automáticamente. Ajusta márgenes,
+ interlineado, sangría, tipo de letra, numeración y más en segundos.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<style>
+.steps{
+background:white;
+max-width:1200px;
+margin:10px auto 30px auto;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 8px rgba(0,0,0,0.05);
+text-align:center;
+}
+
+.steps-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+margin-top:20px;
+}
+
+.step{
+text-align:center;
+}
+
+.step-number{
+background:#2c4a6e;
+color:white;
+width:42px;
+height:42px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+body{
+font-family:Arial;
+margin:0;
+background:#f4f6f9;
+}
+
+header{
+background:#2c4a6e;
+color:white;
+padding:15px 40px;
+font-size:20px;
+}
+
+.hero{
+text-align:center;
+padding:10px 20px 2px 20px;
+}
+
+.container{
+display:grid;
+grid-template-columns:1fr 1.2fr 1fr;
+gap:25px;
+max-width:1600px;
+margin:auto;
+padding:10px 40px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 8px rgba(0,0,0,0.05);
+}
+
+.ad{
+background:#dfe6ee;
+height:120px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+color:#555;
+margin-bottom:20px;
+}
+
+button{
+padding:12px;
+background:#2d7df6;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+width:100%;
+}
+
+input[type="file"]{
+margin-bottom:10px;
+}
+
+.options{
+text-align:left;
+margin-top:10px;
+}
+
+.article{
+max-width:1200px;
+margin:auto;
+background:white;
+padding:40px;
+margin-top:40px;
+border-radius:10px;
+}
+
+.article h3{
+margin-top:25px;
+color:#2c4a6e;
+}
+
+.info-card{
+line-height:1.6;
+}
+
+.info-intro{
+margin-bottom:15px;
+color:#555;
+}
+
+.info-item{
+display:flex;
+align-items:flex-start;
+gap:10px;
+margin-bottom:12px;
+}
+
+.info-icon{
+font-size:18px;
+}
+
+.checkbox-group{
+margin-top:15px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.custom-check{
+display:flex;
+align-items:center;
+gap:10px;
+cursor:pointer;
+font-size:14px;
+}
+
+.custom-check input{
+display:none;
+}
+
+.custom-check span{
+width:18px;
+height:18px;
+border:2px solid #2d7df6;
+border-radius:4px;
+display:inline-block;
+position:relative;
+}
+
+.custom-check input:checked + span{
+background:#2d7df6;
+}
+
+.custom-check input:checked + span:after{
+content:"✔";
+color:white;
+font-size:12px;
+position:absolute;
+left:2px;
+top:-2px;
+}
+
+.upload-box{
+border:2px dashed #3a5a80;
+border-radius:10px;
+padding:30px 20px;
+text-align:center;
+background:#f7f9fc;
+margin-bottom:15px;
+}
+
+.upload-icon img{
+width:70px;
+margin-bottom:12px;
+opacity:0.9;
+}
+
+.upload-text{
+font-size:14px;
+color:#333;
+margin-bottom:12px;
+}
+
+.upload-button{
+display:inline-block;
+background:#3a6fb0;
+color:white;
+padding:10px 18px;
+border-radius:6px;
+cursor:pointer;
+font-size:14px;
+}
+
+.upload-button input{
+display:none;
+}
+
+.file-name{
+margin-top:10px;
+font-size:13px;
+color:#2c4a6e;
+font-weight:500;
+}
+
+.arrow-down{
+display:block;
+width:0;
+height:0;
+margin:6px auto 0 auto;
+
+border-left:6px solid transparent;
+border-right:6px solid transparent;
+border-top:8px solid #2c4a6e;
+}
+
+.modal{
+display:none;
+position:fixed;
+z-index:1000;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.4);
+}
+
+.modal-content{
+background:white;
+padding:40px;
+border-radius:10px;
+width:450px;
+margin:15% auto;
+text-align:center;
+}
+
+.progress-bar{
+width:100%;
+height:12px;
+background:#ddd;
+border-radius:10px;
+margin-top:20px;
+overflow:hidden;
+}
+
+.progress{
+width:0%;
+height:100%;
+background-color:#2d7df6;
+
+background-image: repeating-linear-gradient(
+45deg,
+rgba(255,255,255,0.2),
+rgba(255,255,255,0.2) 10px,
+rgba(255,255,255,0.35) 10px,
+rgba(255,255,255,0.35) 20px
+);
+
+transition: width 5s linear;
+}
+
+@keyframes loading{
+0%{width:10%;}
+50%{width:60%;}
+100%{width:10%;}
+}
+
+.ad-space{
+margin-top:25px;
+background:#eee;
+height:100px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+}
+
+.highlight-box{
+position:relative;
+border:2px solid #2d7df6;
+padding:25px;
+animation:highlightBorder 2s infinite alternate;
+}
+
+@keyframes highlightBorder{
+0%{
+box-shadow:0 0 0px rgba(45,125,246,0.2);
+}
+100%{
+box-shadow:0 0 10px rgba(45,125,246,0.5);
+}
+}
+
+.free-banner{
+margin-top:20px;
+padding:15px;
+border-radius:8px;
+
+background:linear-gradient(135deg,#2d7df6,#1b4f9c);
+color:white;
+
+font-weight:bold;
+text-align:center;
+font-size:15px;
+
+animation:pulseText 2.5s infinite;
+}
+
+@keyframes pulseText{
+0%{transform:scale(1);}
+50%{transform:scale(1.04);}
+100%{transform:scale(1);}
+}
+
+.important-label{
+color:#d93025;
+font-weight:bold;
+}
+
+.ad-large{
+height:120px;
+margin-top:20px;
+}
+
+.rules-title{
+font-size:14px;
+margin-top:10px;
+margin-bottom:8px;
+font-weight:600;
+color:#333;
+}
+
+footer{
+background:#2c4a6e;
+color:white;
+text-align:center;
+padding:40px 20px;
+margin-top:40px;
+}
+
+.footer-links{
+margin-bottom:15px;
+}
+
+.footer-links a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+font-weight:500;
+}
+
+.footer-links a:hover{
+text-decoration:underline;
+}
+
+footer p{
+max-width:900px;
+margin:10px auto;
+font-size:14px;
+line-height:1.6;
+opacity:0.9;
+}
+
+.copyright{
+margin-top:15px;
+font-size:13px;
+opacity:0.8;
+}
+
+.info-card{
+line-height:1.8;
+}
+
+.info-list{
+padding-left:22px;
+margin-top:12px;
+}
+
+.info-list li{
+margin-bottom:14px;
+}
+
+.side-text{
+margin-top:10px;
+line-height:1.7;
+font-size:14px;
+color:#444;
+}
+
+.card ul{
+margin-top:10px;
+margin-bottom:15px;
+padding-left:20px;
+}
+
+.card ul li{
+margin-bottom:6px;
+}
+
+.logo{
+height:50px;
+vertical-align:middle;
+margin-right:3px;
+}
+
+.site-header{
+background:#2c4a6e;
+color:white;
+padding:14px 40px;
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+
+
+.site-title{
+font-size:24px;
+font-weight:700;
+letter-spacing:0.5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="site-header">
+<img src="/static/logo-apa.png" class="logo">
+<span class="site-title">APA al Instante</span>
+</header>
+
+<div class="hero">
+
+<h1>Convierte tu documento a Normas APA (7ma edición) automáticamente</h1>
+
+<p>Ajusta márgenes, interlineado, sangría y mucho más en segundos.</p>
+
+</div>
+
+
+<div class="steps">
+
+<h2>¿Cómo funciona el formateador de normas APA?</h2>
+
+<div class="steps-grid">
+
+<div class="step">
+<div class="step-number">1</div>
+<p>Sube tu archivo .docx</p>
+</div>
+
+<div class="step">
+<div class="step-number">2</div>
+<p>Selecciona las reglas APA que deseas aplicar.</p>
+</div>
+
+<div class="step">
+<div class="step-number">3</div>
+<p>Aplicamos el formato automáticamente.</p>
+</div>
+
+<div class="step">
+<div class="step-number">4</div>
+<p>Descarga tu documento con normas APA.</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="container">
+
+<!-- TEXTO IZQUIERDA -->
+<div class="card">
+
+<h3><span class="important-label">IMPORTANTE:</span> Antes de usar el formateador</h3>
+
+<p class="info-intro">
+Ten en cuenta las siguientes recomendaciones para obtener mejores resultados:
+</p>
+
+<ul class="info-list">
+
+<li>El documento debe estar en formato <b>.docx</b>.</li>
+
+<li>Las referencias deben existir en el documento. La herramienta solo las organiza.</li>
+
+<li>La herramienta aplica formato APA, pero no crea contenido nuevo.</li>
+
+<li>Si tu documento tiene tabla de contenido o secciones, asegúrate de que estén correctamente estructuradas.</li>
+
+<li>La herramienta aplica los formatos seleccionados a todo el documento, asegurate de subir el 
+    documento con solo las partes necesarias a formatear.</li>
+<li>Si el documento incluye portada, se recomienda subir el documento sin esta ya que la herramienta aplica
+    normas APA a todo el documento y la portada puede verse afectada.</li>
+
+<li>Después de aplicar el formato APA, revisa el documento para confirmar que las citas y referencias estén correctamente estructuradas.</li>
+
+<li>Revisa siempre el documento final antes de enviarlo o imprimirlo.</li>
+
+</ul>
+
+</div>
+
+<!-- FORMULARIO -->
+
+<div class="card info-card highlight-box">
+
+<h3>Subir documento</h3>
+
+<div class="upload-box">
+
+<div class="upload-icon">
+<img src="/static/word-icon.png" alt="Word">
+</div>
+
+<p class="upload-text">
+Selecciona tu documento Word aquí
+<span class="arrow-down"></span>
+</p>
+
+
+<label class="upload-button">
+Seleccionar documento
+<input type="file" id="fileInput" accept=".docx">
+</label>
+
+<p id="fileName" class="file-name"></p>
+
+</div>
+
+<p class="rules-title">
+Selecciona las reglas de formato APA que deseas aplicar al documento:
+</p>
+
+<div class="checkbox-group">
+
+<label class="custom-check">
+<input type="checkbox" id="margenes" checked>
+<span></span>
+Márgenes APA
+</label>
+
+<label class="custom-check">
+<input type="checkbox" id="fuente" checked>
+<span></span>
+Times New Roman 12 (Letra)
+</label>
+
+<label class="custom-check">
+<input type="checkbox" id="interlineado" checked>
+<span></span>
+Interlineado doble
+</label>
+
+<label class="custom-check">
+<input type="checkbox" id="sangria" checked>
+<span></span>
+Sangría de párrafo
+</label>
+
+<label class="custom-check">
+<input type="checkbox" id="numeracion" checked>
+<span></span>
+Numeración de páginas
+</label>
+
+<label class="custom-check">
+<input type="checkbox" id="referencias">
+<span></span>
+Formatear referencias
+</label>
+
+</div>
+
+<br>
+
+<button onclick="upload()">Aplicar Normas APA</button>
+
+</div>
+
+<!-- LADO DERECHO -->
+
+<div class="card">
+
+<div class="ad">
+ANUNCIO
+</div>
+
+<h3>Formatea trabajos académicos fácilmente</h3>
+
+<ul>
+<li>Ensayos universitarios</li>
+<li>Trabajos académicos</li>
+<li>Tesis</li>
+<li>Investigaciones</li>
+</ul>
+
+<p class="side-text">
+Este formateador aplica automáticamente los principales requisitos de las normas APA 7 en documentos Word, permitiendo preparar trabajos académicos en segundos sin tener que ajustar manualmente márgenes, interlineado o referencias.
+</p>
+
+<div class="free-banner">
+100% GRATIS<br>
+SIN INSTALAR PROGRAMAS<br>
+NI PAGAR SUSCRIPCIONES
+</div>
+
+<div class="ad ad-large">
+ANUNCIO
+</div>
+</div>
+
+</div>
+<!-- ARTICULO SEO -->
+
+<div class="article">
+
+<h2>Convertir documentos a normas APA 7 automáticamente</h2>
+
+<p>
+Las normas APA son un conjunto de reglas utilizadas para la presentación de trabajos académicos y científicos. Muchos estudiantes necesitan ajustar manualmente márgenes, interlineado, sangría y formato de referencias cuando escriben un trabajo en Word.
+</p>
+
+<p>
+Esta herramienta permite aplicar automáticamente los principales requisitos de formato APA 7 a un documento Word en segundos. Solo debes subir tu archivo y seleccionar los ajustes que deseas aplicar para generar una versión formateada correctamente.
+</p>
+
+<div class="ad">
+ANUNCIO
+</div>
+
+<h2>Errores comunes al aplicar normas APA</h2>
+
+<p>
+Uno de los errores más comunes en trabajos académicos es no respetar los márgenes o el interlineado requerido. También es frecuente encontrar referencias mal ordenadas, párrafos sin la sangría adecuada o numeración incorrecta de las páginas.
+</p>
+
+<p>
+Utilizando una herramienta automática de formato APA puedes evitar estos problemas y ahorrar tiempo al preparar tus documentos académicos. Automatizar el proceso permite enfocarse en el contenido del trabajo en lugar de perder tiempo ajustando el formato.
+</p>
+
+<h2>Cómo aplicar normas APA en Word paso a paso</h2>
+
+<p>
+Aplicar correctamente las normas APA en un documento Word puede ser un proceso largo si se realiza manualmente. Cada elemento del documento debe cumplir con reglas específicas de formato, incluyendo la configuración de márgenes, el interlineado del texto, la sangría de los párrafos y el estilo de las referencias bibliográficas.
+</p>
+
+<p>
+Para aplicar el formato APA manualmente en Word normalmente se deben configurar márgenes de 2.54 cm, seleccionar una fuente adecuada como Times New Roman tamaño 12, activar interlineado doble y aplicar sangría en la primera línea de cada párrafo. También es necesario numerar las páginas y organizar correctamente la sección de referencias.
+</p>
+
+<p>
+Este proceso puede tomar varios minutos o incluso horas en documentos largos. Por eso muchas personas utilizan herramientas automáticas que permiten aplicar el formato APA en segundos sin tener que modificar manualmente cada elemento del documento.
+</p>
+
+<h2>¿Quién puede usar este formateador de normas APA?</h2>
+
+<p>
+Este formateador está diseñado principalmente para estudiantes universitarios, investigadores, docentes y cualquier persona que necesite presentar trabajos académicos siguiendo las normas APA. También puede ser útil para redactar ensayos, informes académicos, proyectos de investigación o trabajos finales de grado.
+</p>
+
+<p>
+La herramienta permite aplicar rápidamente los principales ajustes de formato utilizados en la séptima edición de las normas APA. Esto facilita la preparación de documentos académicos y reduce los errores de formato que suelen aparecer cuando se realiza el proceso manualmente.
+</p>
+
+</div>
+
+<div class="article">
+
+<h2>Preguntas frecuentes sobre normas APA</h2>
+
+<h3>¿Qué son las normas APA?</h3>
+
+<p>
+Las normas APA son un conjunto de reglas utilizadas para presentar trabajos académicos y científicos. Estas normas definen aspectos como márgenes, interlineado, citas, referencias y estructura del documento.
+</p>
+
+<h3>¿Cuáles son los márgenes en normas APA?</h3>
+
+<p>
+Según APA 7, los márgenes deben ser de 2.54 cm (1 pulgada) en todos los lados del documento: superior, inferior, izquierdo y derecho.
+</p>
+
+<h3>¿Cuál es el interlineado en normas APA?</h3>
+
+<p>
+El interlineado en normas APA debe ser doble en todo el documento, incluyendo el texto principal, citas y referencias.
+</p>
+
+<h3>¿Qué fuente se usa en normas APA?</h3>
+
+<p>
+Una de las fuentes más utilizadas en normas APA es Times New Roman tamaño 12. También se aceptan otras fuentes como Arial 11 o Calibri 11.
+</p>
+
+<h3>¿Cómo hacer sangría en normas APA?</h3>
+
+<p>
+En las normas APA cada párrafo del texto debe comenzar con una sangría de 0.5 pulgadas (aproximadamente 1.27 cm). Esto se aplica a la primera línea del párrafo para mantener un formato uniforme en todo el documento.
+</p>
+
+<h3>¿Las referencias tienen sangría especial en normas APA?</h3>
+
+<p>
+Sí. En la sección de referencias se utiliza una sangría francesa. Esto significa que la primera línea de la referencia comienza alineada a la izquierda y las siguientes líneas se desplazan hacia la derecha.
+</p>
+
+<h3>¿Se puede aplicar formato APA automáticamente en Word?</h3>
+
+<p>
+Sí. Existen herramientas como este formateador que permiten aplicar automáticamente los principales ajustes de las normas APA en documentos Word, evitando tener que modificar manualmente márgenes, interlineado o sangría.
+</p>
+
+</div>
+
+<div class="ad">
+ANUNCIO
+</div>
+
+<footer>
+
+<div class="footer-links">
+<a href="/contact">Contacto</a>
+<a href="/privacy">Política de privacidad</a>
+<a href="/terms">Términos de uso</a>
+</div>
+
+<p>
+Esta herramienta permite aplicar automáticamente las normas APA 7 a documentos Word. Ajusta márgenes, interlineado, sangría y formato académico en segundos.
+</p>
+
+<p>
+Los documentos subidos se procesan temporalmente y se eliminan automáticamente del servidor después de generar el archivo formateado.
+</p>
+
+<p class="copyright">
+© 2026 APA al Instante – Formateador gratuito de normas APA 7.
+</p>
+
+</footer>
+
+<script>
+
+document.getElementById("fileInput").addEventListener("change", function(){
+
+let file = this.files[0];
+
+if(!file) return;
+
+let name = file.name.toLowerCase();
+
+/* validar extension */
+
+if(!name.endsWith(".docx")){
+alert("Solo se permiten documentos Word (.docx)");
+this.value="";
+document.getElementById("fileName").textContent="";
+return;
+}
+
+/* mostrar nombre si es valido */
+
+document.getElementById("fileName").textContent =
+"Archivo seleccionado: " + file.name;
+
+});
+
+</script>
+
+<script>
+
+async function upload(){
+
+let file = document.getElementById("fileInput").files[0];
+
+if(!file){
+alert("Por favor selecciona un documento Word (.docx)");
+return;
+}
+
+/* validar extension */
+
+let fileName = file.name.toLowerCase();
+
+if(!fileName.endsWith(".docx")){
+alert("Solo se permiten documentos Word (.docx)");
+document.getElementById("fileInput").value="";
+return;
+}
+
+/* validar tipo MIME (extra seguridad) */
+
+if(file.type && file.type !== "application/vnd.openxmlformats-officedocument.wordprocessingml.document"){
+alert("El archivo seleccionado no es un documento Word válido (.docx)");
+document.getElementById("fileInput").value="";
+return;
+}
+
+/* mostrar modal */
+
+let modal = document.getElementById("loadingModal");
+modal.style.display="block";
+
+let progress = document.querySelector(".progress");
+progress.style.width="0%";
+
+setTimeout(()=>{
+progress.style.width="100%";
+},100);
+
+/* preparar datos */
+
+let formData = new FormData();
+formData.append("file", file);
+
+formData.append("margenes", document.getElementById("margenes").checked);
+formData.append("fuente", document.getElementById("fuente").checked);
+formData.append("interlineado", document.getElementById("interlineado").checked);
+formData.append("sangria", document.getElementById("sangria").checked);
+formData.append("numeracion", document.getElementById("numeracion").checked);
+formData.append("referencias", document.getElementById("referencias").checked);
+
+let start = Date.now();
+
+/* enviar al backend */
+
+let response = await fetch("/upload",{
+method:"POST",
+body:formData
+});
+
+let blob = await response.blob();
+
+/* asegurar 5 segundos */
+
+let elapsed = Date.now() - start;
+let wait = 5000 - elapsed;
+
+if(wait > 0){
+await new Promise(resolve => setTimeout(resolve, wait));
+}
+
+modal.style.display="none";
+
+/* descargar archivo */
+
+let link = document.createElement("a");
+link.href = window.URL.createObjectURL(blob);
+
+let originalName = file.name.replace(".docx","");
+
+link.download = originalName + "_APA.docx";
+
+link.click();
+
+document.getElementById("fileInput").value = "";
+document.getElementById("fileName").textContent = "";
+}
+
+</script>
+
+<div id="loadingModal" class="modal">
+
+<div class="modal-content">
+
+<h2>Generando documento APA...</h2>
+
+<div class="progress-bar">
+<div class="progress"></div>
+</div>
+
+<div class="ad-space">
+ANUNCIO
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

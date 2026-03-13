@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://apainstantly.onrender.com/sitemap.xml
