@@ -13,6 +13,10 @@ import os
 
 app = FastAPI()
 
+@app.head("/")
+def health_check():
+    return {"status": "ok"}
+
 @app.get("/robots.txt")
 def robots():
     return FileResponse("static/robots.txt", media_type="text/plain")
