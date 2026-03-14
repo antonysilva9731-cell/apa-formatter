@@ -7,10 +7,20 @@ from io import BytesIO
 from docx import Document
 from docx.shared import Pt, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+from fastapi.responses import FileResponse
 
 import os
 
 app = FastAPI()
+
+@app.get("/robots.txt")
+def robots():
+    return FileResponse("static/robots.txt", media_type="text/plain")
+
+
+@app.get("/sitemap.xml")
+def sitemap():
+    return FileResponse("sitemap.xml", media_type="application/xml")
 
 # Static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
